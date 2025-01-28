@@ -1,0 +1,8 @@
+<section class="border-gray border-t-2 border-b-2">
+    <h2 class="text-center">{{title}}</h2>
+    <div class="flex w-full justify-evenly">
+        {% for chart in charts %}
+            <img src="{{chart}}">
+        {% endfor %}
+    </div>
+</section>

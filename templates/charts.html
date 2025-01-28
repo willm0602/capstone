@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for chart_section in chart_sections %}
+    {% with title=chart_section.name, charts=chart_section.charts%}
+        {% include "components/charts_section.html" %}
+    {% endwith %}
+    {% endfor %}
+{% endblock content %}
