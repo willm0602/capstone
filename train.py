@@ -35,7 +35,7 @@ def train():
     y = df['lung_cancer']
 
     # Split the dataset into training and testing sets
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1)
 
     # Train a logistic regression model
     model = LogisticRegression()
