@@ -1,5 +1,5 @@
 from typing import List
-from flask import Blueprint, url_for
+from flask import Blueprint, request, url_for
 from flask import render_template
 
 from chart_section import ChartSection
@@ -13,6 +13,13 @@ def static(path: str) -> str:
 @urls.route('/', methods=['GET'])
 def index():
     return render_template('index.html', page_name='home')
+
+@urls.route('/cancer_score')
+def cancer_score():
+    score = float(request.args.get('score') or '0')
+    rounded_score = round(score, 4)
+    print('rounded score is', rounded_score)
+    return render_template('cancer_score.html', has_cancer = (score > 0.5))
 
 @urls.route('/charts', methods=['GET'])
 def charts():

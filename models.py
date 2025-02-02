@@ -31,6 +31,14 @@ class TestCase(db.Model):
     chest_pain = db.Column(db.Boolean, nullable=False)
     lung_cancer = db.Column(db.Boolean, nullable=False)
 
+class LungCancerDetectionModel(db.Model):
+    """Represents a model that can be used to determine
+    if an individual has lung cancer or not"""
+    id = db.Column(db.Integer, primary_key=True)
+    overall_accuracy = db.Column(db.Float, nullable=False)
+    false_negative_rate = db.Column(db.Float, nullable=False)
+    # https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.PickleType
+    model = db.Column(db.PickleType, nullable=False)
 
 def connect_to_db(app: Flask) -> Flask:
     """Initializes the connection for the app to the database

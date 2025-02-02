@@ -1,0 +1,68 @@
+<form action="/api/evaluate"
+      method="post"
+      class="max-w-[800px] mx-auto"
+>
+    <h1>Determine your likelihood of having lung cancer</h1>
+    {% with yes="Male", no="Female", question="What is your biological sex?", field_name="gender" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    {% with yes="Yes", no="No", question="Do you smoke?", field_name="smoking" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you have yellow fingers?", field_name="yellow_fingers" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you have anxiety?", field_name="anxiety" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you have chronic disease?", field_name="chronic_disease" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you have fatigue?", field_name="fatigue" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you have allergies?", field_name="allergy" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Are you wheezing?", field_name="wheezing" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+    
+    {% with yes="Yes", no="No", question="Do you consume alcohol?", field_name="alcohol_consuming" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    {% with yes="Yes", no="No", question="Have you been coughing?", field_name="coughing" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    {% with yes="Yes", no="No", question="Do you have shortness of breath?", field_name="shortness_of_breath" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    {% with yes="Yes", no="No", question="Do you have difficulty swallowing?", field_name="swallowing_difficulty" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    {% with yes="Yes", no="No", question="Do you have chest pain?", field_name="chest_pain" %}
+        {% include "yes_no.html" %}
+    {% endwith %}
+
+    <div>
+        <input
+            type="number"
+            placeholder="Age"
+            required
+            name="age"
+            class="input input-bordered input-secondary w-full max-w-xs mt-4 mb-4" />
+    </div>
+
+    <button type="submit" class="btn btn-main">Submit</button>
+</form>
