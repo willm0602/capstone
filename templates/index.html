@@ -1,5 +1,34 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(() => {
+        $('form').on('submit', function (e) {  // Use function() instead of arrow function
+            e.preventDefault();
+            const formData = $(this).serialize();
+            const apiURL = `/api/analyze?${formData}`
+            $.ajax({
+                url: apiURL,
+                method: 'POST',
+                dataType: 'json',
+                success: (res) => {
+                    const score = res.score;
+                    if(score || (score === '0')){
+                        $('#subtext').html(`There is a ${score}% chance that you have Lung Cancer`)
+                    }
+                }, error: (rej) => {
+                    console.error(rej);
+                }
+            })
+        });
+    });
+
+</script>
+{% endblock head%}
+
 {% block content %}
+    {% include "components/disclaimer_modal.html" %}
     {% include "lung_cancer_survey.html" %}
 {% endblock content %}

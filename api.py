@@ -16,17 +16,17 @@ def clean_form_data(obj: dict):
         cleaned_dict[key] = val
     return cleaned_dict
 
-@api.route('/evaluate', methods=['GET', 'POST'])
+@api.route('/analyze', methods=['POST'])
 def evaluate():
-    data = request.form
+    data = request.args
     data = clean_form_data(data)
     from models import LungCancerDetectionModel
     app = current_app
     model: LungCancerDetectionModel = app.config['MODEL']
     regression_model: LogisticRegression = model.model
-
     df = pd.DataFrame(data, index=[0])
     columns = regression_model.feature_names_in_
     df = df[columns]
-    score = regression_model.predict_proba(df)[:,0][0]
-    return redirect(f'/cancer_score?score={score}')
+    score = regression_model.predict_proba(df)[:,0][0] * 100
+    score = round(score, 2)
+    return {'score': score}

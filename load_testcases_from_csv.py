@@ -1,7 +1,7 @@
 import csv
 FILE_NAME = './data.csv'
 
-def parse_sex(row: dict) -> bool:
+def parse_gender(row: dict) -> bool:
     """returns if the individuals sex is male or female"""
     gender = row.get('GENDER')
     if gender is None or gender not in 'MF':
@@ -48,32 +48,11 @@ def parse_yes_no(row, field_name):
 def load_testcases_from_csv(db):
     from models import TestCase
 
-    def is_duplicate(test_case_data):
-        # Check if a record with the same key fields already exists
-        return db.session.query(TestCase).filter_by(
-            is_male=test_case_data['is_male'],
-            age=test_case_data['age'],
-            smoking=test_case_data['smoking'],
-            yellow_fingers=test_case_data['yellow_fingers'],
-            anxiety=test_case_data['anxiety'],
-            peer_pressure=test_case_data['peer_pressure'],
-            chronic_disease=test_case_data['chronic_disease'],
-            fatigue=test_case_data['fatigue'],
-            allergy=test_case_data['allergy'],
-            wheezing=test_case_data['wheezing'],
-            alcohol_consuming=test_case_data['alcohol_consuming'],
-            coughing=test_case_data['coughing'],
-            shortness_of_breath=test_case_data['shortness_of_breath'],
-            swallowing_difficulty=test_case_data['swallowing_difficulty'],
-            chest_pain=test_case_data['chest_pain'],
-            lung_cancer=test_case_data['lung_cancer']
-        ).first() is not None
-
     with open(FILE_NAME, mode='r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             test_case_data = {
-                'is_male': parse_sex(row),
+                'is_male': parse_gender(row),
                 'age': row['AGE'],
                 'smoking': parse_1_2(row, 'SMOKING'),
                 'yellow_fingers': parse_1_2(row, 'YELLOW_FINGERS'),
@@ -90,9 +69,7 @@ def load_testcases_from_csv(db):
                 'chest_pain': parse_1_2(row, 'SMOKING'),
                 'lung_cancer': parse_yes_no(row, 'LUNG_CANCER')
             }
-
-            if not is_duplicate(test_case_data):
-                test_case = TestCase(**test_case_data)
-                db.session.add(test_case)
+            test_case = TestCase(**test_case_data)
+            db.session.add(test_case)
 
         db.session.commit()

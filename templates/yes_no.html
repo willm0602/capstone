@@ -1,23 +1,15 @@
-<h2 style="margin-top: 1em; margin-bottom: 0;">{{question}}</h2>
-<div class="flex">
-    <div class="mr-12">
-        <input type="radio"
-               id="{{field_name}}-yes"
-               required
-               name="{{field_name}}" 
-               value="1"
-               class="cursor-pointer"
-        >
-        <label for="{{field_name}}-yes">{{yes}}</label><br>
-    </div>
-    <div>
-        <input type="radio"
-               id="{{field_name}}-no"
-               required
-               name="{{field_name}}" 
-               value="0"
-               class="cursor-pointer"
-        >
-        <label for="{{field_name}}-no">{{no}}</label><br>
-    </div>
+<div class="mr-24 w-80">
+       <h2 style="margin-top:0;margin-bottom: 0;">{{question}}</h2>
+       <div class="flex">
+              <div class="mr-12">
+                     <input type="radio" id="{{field_name}}-yes" required name="{{field_name}}" value="1"
+                            class="cursor-pointer">
+                     <label for="{{field_name}}-yes">{{yes}}</label><br>
+              </div>
+              <div>
+                     <input type="radio" id="{{field_name}}-no" required name="{{field_name}}" value="0"
+                            class="cursor-pointer">
+                     <label for="{{field_name}}-no">{{no}}</label><br>
+              </div>
+       </div>
 </div>

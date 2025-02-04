@@ -204,7 +204,7 @@ def make_age_charts() -> None:
             with_cancer[age_range]+=1
         else:
             without_cancer[age_range]+=1
-    age_ranges = [f'{10*i} - {11*i-1}' for i in range(12)]
+    age_ranges = [f'{10*i} - {10*i+9}' for i in range(12)]
     data = {
         'Age Ranges': age_ranges,
         'With Cancer': with_cancer,

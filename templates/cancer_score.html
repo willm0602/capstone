@@ -2,11 +2,17 @@
 
 {% block content %}
 <main class="w-1/2 mx-auto">
-    <h1>Cancer Likelihood</h1>
-    {% if has_cancer %}
-        <h2>We have come to the conclusion that you may have cancer.</h2>
-    {% else %}
-        <h2>No cancer for you</h2>
-    {% endif %}
+    <div class="hero">
+        <div class="hero-content flex-col">
+            <h1>Cancer Likelihood</h1>
+            {% if has_cancer %}
+                <h2>We believe there is a chance you may have lung cancer and should consider consulting a medical professional.</h2> 
+            {% else %}
+                <h2>We don't believe that you have cancer.</h2>
+            {% endif %}
+            <h2>With that being said, this analysis is made with a limited set of data and not a guaruntee that you do {% if not has_cancer %}not{% endif %} have cancer.</h2>
+            <h2>If you believe you may have lung cancer, we advise you to consult with a medical professional.</h2>
+        </div>
+    </div>
 </main>
 {% endblock content %}

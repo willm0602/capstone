@@ -1,10 +1,12 @@
 from typing import List
 from flask import Blueprint, request, url_for
 from flask import render_template
+from flask import current_app
 
 from chart_section import ChartSection
 
 urls = Blueprint('urls', __name__, url_prefix='')
+HAS_CANCER_THRESHOLD = 0.6 # score for determining if we want to report that they may have cancer
 
 def static(path: str) -> str:
     """Shortcut for getting static URLs"""
@@ -14,12 +16,21 @@ def static(path: str) -> str:
 def index():
     return render_template('index.html', page_name='home')
 
+@urls.route('/info', methods=['GET'])
+def info():
+    app = current_app
+    model = app.config['MODEL']
+    accuracy = round(model.overall_accuracy * 100, 2)
+    false_negative_rate = model.false_negative_rate
+    print('FALSE NEGATIVE RATE IS', false_negative_rate)
+    false_negative_rate = round(false_negative_rate * 100, 2)
+    return render_template('info.html', page_name='info', accuracy=accuracy, false_negative_rate=false_negative_rate)
+
 @urls.route('/cancer_score')
 def cancer_score():
     score = float(request.args.get('score') or '0')
-    rounded_score = round(score, 4)
-    print('rounded score is', rounded_score)
-    return render_template('cancer_score.html', has_cancer = (score > 0.5))
+    has_cancer = score > HAS_CANCER_THRESHOLD
+    return render_template('cancer_score.html', has_cancer=has_cancer, page_name='home')
 
 @urls.route('/charts', methods=['GET'])
 def charts():

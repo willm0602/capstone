@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.2.x/dist/typography.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    {% block head %}
+    {% endblock %}
 </head>
 <body class="prose max-w-full">
     <nav class="navbar bg-base-100">
@@ -17,6 +20,7 @@
         <ul class="menu menu-horizontal px-1">
           <li><a href="/" class="no-underline {% if page_name=='home' %}active{% endif %}">Home</a></li>
           <li><a href="/charts" class="no-underline {% if page_name=='charts' %}active{% endif %}">Charts</a></li>
+          <li><a href="/info" class="no-underline {% if page_name=='info' %}active{%endif%}">Info</a></li>
         </ul>
       </div>
     </nav>

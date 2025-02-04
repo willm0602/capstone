@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-[40vw] mx-auto">
+  <h1>Info</h1>
+  <h2>Author</h2>
+  <p>This application was developed by William Migdol.</p>
+  <h2>Model</h2>
+  <p>This app uses logistic regression to approximate the likelihood that an individual has lung cancer. Our model was
+    tested using <a target="_blank"
+      href="https://web.archive.org/web/20191114213255/https://www.flinders.edu.au/science_engineering/fms/School-CSEM/publications/tech_reps-research_artfcts/TRRA_2007.pdf">Precision
+      and Recall.</a> Using the testing data that we used, our model has an accuracy rate of {{accuracy}}%, with a
+    false-postive rate of {{false_negative_rate}}%. This data is soley provided from the input data, and while the model
+    has proven accuracy with the sample data, it is very possible that there is overfit data.</p>
+
+</div>
+{% endblock %}
